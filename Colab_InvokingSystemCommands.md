@@ -112,3 +112,91 @@ hostname*         su*
 ```
 
 Execute any of these commands as we have done for echo and wget. In the next chapter, we shall see how to execute your previously created Python code.
+
+---
+
+## Magics List
+
+To get a complete list of supported magics, execute the following command −
+```
+%lsmagic
+```
+
+You will see the following output −
+```
+Available line magics:
+%alias %alias_magic %autocall %automagic %autosave %bookmark %cat %cd %clear
+%colors %config %connect_info %cp %debug %dhist %dirs %doctest_mode %ed %edit
+%env %gui %hist %history %killbgscripts %ldir %less %lf %lk %ll %load %load_ext
+%loadpy %logoff %logon %logstart %logstate %logstop %ls %lsmagic %lx %macro
+%magic %man %matplotlib %mkdir %more %mv %notebook %page %pastebin %pdb %pdef
+%pdoc %pfile %pinfo %pinfo2 %pip %popd %pprint %precision %profile %prun
+%psearch %psource %pushd %pwd %pycat %pylab %qtconsole %quickref %recall
+%rehashx %reload_ext %rep %rerun %reset %reset_selective %rm %rmdir %run %save
+%sc %set_env %shell %store %sx %system %tb %tensorflow_version %time %timeit
+%unalias %unload_ext %who %who_ls %whos %xdel %xmode
+
+Available cell magics:
+%%! %%HTML %%SVG %%bash %%bigquery %%capture %%debug %%file %%html %%javascript
+%%js %%latex %%perl %%prun %%pypy %%python %%python2 %%python3 %%ruby %%script
+%%sh %%shell %%svg %%sx %%system %%time %%timeit %%writefile
+```
+Automagic is `ON`, `%` prefix IS NOT needed for line magics.
+
+Next, you will learn another powerful feature in Colab to set the program variables at runtime.
+
+----
+
+# Google Colab - Executing External Python Files
+
+Suppose, you already have some Python code developed that is stored in your Google Drive. Now, you will like to load this code in Colab for further modifications. In this chapter, we will see how to load and run the code stored in your Google Drive.
+
+## Mounting Drive
+```
+Tools / Command palette
+```
+
+Type a few letters like m in the search box to locate the mount command. Select `Mount Drive` command from the list. The following code would be inserted in your Code cell.
+```
+# Run this cell to mount your Google Drive.
+from google.colab import drive
+drive.mount('/content/drive')
+```
+
+If you run this code, you will be asked to enter the authentication code. The corresponding screen looks as shown below −
+```
+Go to this URL in a browser: https://accounts.google.com/o/oauth2/auth?client_id=94534236342k3r32rl1rnr3
+
+Enter your authorization code:
+```
+
+Open the above URL in your browser. You will be asked to login to your Google account. Now, you will see the following screen −
+
+Now, you are ready to use the contents of your drive in Colab.
+
+## Listing Drive Contents
+
+You can list the contents of the drive using the ls command as follows −
+```
+!ls "/content/drive/My Drive/Colab Notebooks"
+```
+This command will list the contents of your Colab Notebooks folder. The sample output of my drive contents are shown here −
+```
+Greeting.ipynb hello.py LogisticRegressionCensusData.ipynb LogisticRegressionDigitalOcean.ipynb MyFirstColabNotebook.ipynb SamplePlot.ipynb
+```
+
+## Running Python Code
+
+Now, let us say that you want to run a Python file called hello.py stored in your Google Drive. Type the following command in the Code cell −
+```
+!python3 "/content/drive/My Drive/Colab Notebooks/hello.py"
+```
+The contents of hello.py are given here for your reference −
+```
+print("Welcome to TutorialsPoint!")
+```
+You will now see the following output −
+```
+Welcome to TutorialsPoint!
+```
+Besides the text output, Colab also supports the graphical outputs. We will see this in the next chapter.
